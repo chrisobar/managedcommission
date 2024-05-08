@@ -1,131 +1,141 @@
 using CommissionService as service from '../../srv/commissions_srv';
 annotate service.CommissionsList with @(
-    UI.FieldGroup #GeneratedGroup : {
+    UI.SelectionFields: [
+       STATUS,
+       DATE_SUBMITTED,
+       COMPANY_CODE,       
+       RE_UNIT,
+       BUILDING,
+       LAND,
+       BROKER_NO,
+       CONTRACT_NO
+    ],
+    UI.FieldGroup #ContractDetails : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'STATUS',
+                Label : 'Status',
                 Value : STATUS,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMPANY_CODE',
+                Label : 'Company Code',
                 Value : COMPANY_CODE,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CONTRACT_NO',
+                Label : 'Contract No.',
                 Value : CONTRACT_NO,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'BUILDING',
+                Label : 'Building',
                 Value : BUILDING,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'LAND',
+                Label : 'Land',
                 Value : LAND,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'RE_UNIT',
+                Label : 'RE - UNIT',
                 Value : RE_UNIT,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'RE_UNIT_DESC',
+                Label : 'Description',
                 Value : RE_UNIT_DESC,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'BROKER_NO',
+                Label : 'Broker No.',
                 Value : BROKER_NO,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'BROKER_NAME',
+                Label : 'Broker Name',
                 Value : BROKER_NAME,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'BP_ROLE',
+                Label : 'BP Role',
                 Value : BP_ROLE,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'TRANCHE_NO',
+                Label : 'Tranche No.',
                 Value : TRANCHE_NO,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'TRANCHE_VER',
+                Label : 'Version',
                 Value : TRANCHE_VER,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMMISSION_BASE_AMT',
+                Label : 'Commission Base Amt.',
                 Value : COMMISSION_BASE_AMT,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMMISSION_RATE',
+                Label : 'Commission Rate',
                 Value : COMMISSION_RATE,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'VAT_INCL',
+                Label : 'VAT Inc.',
                 Value : VAT_INCL,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMMISSION_AMT',
+                Label : 'Commission Amount',
                 Value : COMMISSION_AMT,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMMISSION_PAID',
+                Label : 'Commission Paid',
                 Value : COMMISSION_PAID,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'WITHHOLDING_TAX',
+                Label : 'Withholding Tax',
                 Value : WITHHOLDING_TAX,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'COMMISSION_NET',
+                Label : 'Commission Net',
                 Value : COMMISSION_NET,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CONDITION_TYPE',
+                Label : 'Condition Type',
                 Value : CONDITION_TYPE,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'SUBMITTED_BY',
+                Label : 'Submitted By',
                 Value : SUBMITTED_BY,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'DATE_SUBMITTED',
+                Label : 'Date Submitted',
                 Value : DATE_SUBMITTED,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'APPROVED_BY',
+                Label : 'Approved By',
                 Value : APPROVED_BY,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'DATE_APPROVED',
+                Label : 'Date Approved',
                 Value : DATE_APPROVED,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'AP_DOC_NO',
+                Label : 'AP Doc. No.',
                 Value : AP_DOC_NO,
             },
         ],
@@ -133,37 +143,69 @@ annotate service.CommissionsList with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            ID : 'Contracts',
+            Label : '{i18n>contractHeader}',
+            Target : '@UI.FieldGroup#ContractDetails',
+        },
+                {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'Details',
+            Label : '{i18n>detailHeader}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'CONTRACT_NO',
+            Label : '{i18n>status}',
+            Value : STATUS,
+            ![@HTML5.CssDefaults] : {
+                $Type : 'HTML5.CssDefaultsType',
+                width: '5rem'
+            }
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>contractno}',
             Value : CONTRACT_NO,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'COMPANY_CODE',
+            Label : '{i18n>companycode}',
             Value : COMPANY_CODE,
         },
+
         {
             $Type : 'UI.DataField',
-            Label : 'STATUS',
-            Value : STATUS,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'BUILDING',
+            Label : 'Building',
             Value : BUILDING,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'LAND',
+            Label : 'Land',
             Value : LAND,
         },
+            {
+                $Type : 'UI.DataField',
+                Label : 'RE - UNIT',
+                Value : RE_UNIT,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Description',
+                Value : RE_UNIT_DESC,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Broker No.',
+                Value : BROKER_NO,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Broker Name',
+                Value : BROKER_NAME,
+            },
+            
     ],
 );
 

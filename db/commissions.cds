@@ -12,32 +12,32 @@ type UserId: String(10);
 type AmtUnit: Decimal(15, 2);
 
 entity CommissionsList { 
-    key STATUS: String(15);
-    key COMPANY_CODE: CoCode;
-    key CONTRACT_NO: ContractNo;
+    key STATUS: String(15) @Common.Label : 'Processing Type';
+    key COMPANY_CODE: CoCode @Common.Label : 'Company Code';
+    key CONTRACT_NO: ContractNo @Common.Label : 'Contract No.';
     LIST: Composition of many TrancheDetails on LIST.CONTRACT_NO = $self;    
-    BUILDING: Building;
-    LAND: Land;
-    RE_UNIT: String(10);
-    RE_UNIT_DESC: String(30);
-    BROKER_NO: BrokerNo;
-    BROKER_NAME: BrokerName;
-    BP_ROLE: String(15);
-    TRANCHE_NO: TrancheNo;
-    TRANCHE_VER: String(2);
-    COMMISSION_BASE_AMT: AmtUnit;
-    COMMISSION_RATE: AmtUnit;
-    VAT_INCL: String(2);
-    COMMISSION_AMT: AmtUnit;
-    COMMISSION_PAID: AmtUnit;
-    WITHHOLDING_TAX: AmtUnit;
-    COMMISSION_NET: AmtUnit;
-    CONDITION_TYPE: AmtUnit;
-    SUBMITTED_BY: UserId;
-    DATE_SUBMITTED: Date;
-    APPROVED_BY: UserId;
-    DATE_APPROVED: Date;
-    AP_DOC_NO: String(10);
+    BUILDING: Building @Common.Label : 'Building';
+    LAND: Land @Common.Label : 'Land';
+    RE_UNIT: String(10) @Common.Label : 'Project';
+    RE_UNIT_DESC: String(30) @Common.Label : 'Project Desc.';
+    BROKER_NO: BrokerNo @Common.Label : 'Broker No.';
+    BROKER_NAME: BrokerName @Common.Label : 'Broker Name';
+    BP_ROLE: String(15) @Common.Label : 'BP Role';
+    TRANCHE_NO: TrancheNo @Common.Label : 'Tranche No.';
+    TRANCHE_VER: String(2) @Common.Label : 'Tranche Ver.';
+    COMMISSION_BASE_AMT: AmtUnit @Common.Label : 'Commission Base Amount';
+    COMMISSION_RATE: AmtUnit @Common.Label : 'Commission Rate';
+    VAT_INCL: String(2) @Common.Label : 'VAT Inclusive';
+    COMMISSION_AMT: AmtUnit @Common.Label : 'Commission Amount';
+    COMMISSION_PAID: AmtUnit @Common.Label : 'Commission Paid';
+    WITHHOLDING_TAX: AmtUnit @Common.Label : 'Withholding Tax';
+    COMMISSION_NET: AmtUnit @Common.Label : 'Commission Net';
+    CONDITION_TYPE: AmtUnit @Common.Label : 'Condition Type';
+    SUBMITTED_BY: UserId @Common.Label : 'Submitted By';
+    DATE_SUBMITTED: Date @Common.Label : 'Run Date';
+    APPROVED_BY: UserId @Common.Label : 'Approved By';
+    DATE_APPROVED: Date @Common.Label : 'Date Approved';
+    AP_DOC_NO: String(10) @Common.Label : 'AP Doc. No.';
 }
 
 entity TrancheDetails {

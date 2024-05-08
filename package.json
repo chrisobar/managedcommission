@@ -12,7 +12,7 @@
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/eslint-plugin-cds": "^3",
-    "@sap/ux-specification": "^1.120.9",
+    "@sap/ux-specification": "^1.84.87",
     "eslint": "^9"
   },
   "scripts": {
