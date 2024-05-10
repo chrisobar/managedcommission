@@ -12,10 +12,10 @@ annotate service.CommissionsList with @(
         CONTRACT_NO
     ],
     UI.HeaderInfo                    : {
-        TypeName      : 'Title Test',
-        TypeNamePlural: 'Title Test ',
-        Title         : {Value: CONTRACT_NO},
-        Description   : {Value: CONTRACT_NO}
+        TypeName      : '{i18n>capTitle}',
+        TypeNamePlural: '{i18n>capTitle}',
+        Title         : {Value: '{i18n>capTitle}'},
+        Description   : {Value: '{i18n>capTitle}'}
     },
     UI.FieldGroup #ContractDetails   : {
         $Type: 'UI.FieldGroupType',
