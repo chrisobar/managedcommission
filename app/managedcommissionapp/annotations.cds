@@ -1,7 +1,7 @@
 using CommissionService as service from '../../srv/commissions_srv';
 
 annotate service.CommissionsList with @(
-    UI.SelectionFields            : [
+    UI.SelectionFields               : [
         STATUS,
         DATE_SUBMITTED,
         COMPANY_CODE,
@@ -11,7 +11,13 @@ annotate service.CommissionsList with @(
         BROKER_NO,
         CONTRACT_NO
     ],
-    UI.FieldGroup #ContractDetails: {
+    UI.HeaderInfo                    : {
+        TypeName      : 'Title Test',
+        TypeNamePlural: 'Title Test ',
+        Title         : {Value: CONTRACT_NO},
+        Description   : {Value: CONTRACT_NO}
+    },
+    UI.FieldGroup #ContractDetails   : {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
@@ -61,15 +67,116 @@ annotate service.CommissionsList with @(
             },
         ],
     },
-    UI.Facets                     : [{
-        $Type : 'UI.ReferenceFacet',
-        ID    : 'Contracts',
-        Label : '{i18n>contractHeader}',
-        Target: '@UI.FieldGroup#ContractDetails',
-    },
+    UI.FieldGroup #BuyerPaymentHeader: {
+        $Type: 'UI.FieldGroupType',
 
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Label: 'Total Contract Price',
+                Value: COMMISSION_AMT,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Paid Amount',
+                Value: COMMISSION_NET,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '% Paid',
+                Value: COMMISSION_PAID,
+            },
+
+        ],
+    },
+    UI.LineItem #trancheHeader       : [
+        {
+            Label: '{i18n>trancheNo}',
+            Value: TRANCHE_NO
+        },
+        {
+            Label: '{i18n>status1}',
+            Value: STATUS
+        },
+        {
+            Label: '{i18n>commRate}',
+            Value: COMMISSION_RATE
+        },
+        {
+            Label: '{i18n>commAmt}',
+            Value: COMMISSION_AMT
+        },
+        {
+            Label: 'Comm Paid Prev-Cont.',
+            Value: COMMISSION_PAID
+        },
+        {
+            Label: '{i18n>vatIncl}',
+            Value: VAT_INCL
+        },
+        {
+            Label: '{i18n>withTax}',
+            Value: WITHHOLDING_TAX
+        },
+        {
+            Label: '{i18n>commNet}',
+            Value: COMMISSION_NET
+        },
+        {
+            Label: '{i18n>approvedDate}',
+            Value: DATE_APPROVED
+        },
+        {
+            Label: 'AP Journal Entry No.',
+            Value: AP_DOC_NO
+        },
+        {
+            Label: 'Payment Doc. No.',
+            Value: ''
+        }
     ],
-    UI.LineItem                   : [
+    // UI.LineItem #documentaryHeader   : [
+    //     {
+    //         Label: 'Resubmission Code',
+    //         Value: '1001'
+    //     },
+    //     {
+    //         Label: 'Description',
+    //         Value: 'test'
+    //     },
+    //     {
+    //         Label: 'Status',
+    //         Value: ''
+    //     }
+    // ],
+    UI.Facets                        : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'ContractDetails',
+            Label : '{i18n>contractHeader}',
+            Target: '@UI.FieldGroup#ContractDetails',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'BuyerPayments',
+            Label : '{i18n>buyerPaymentHeader}',
+            Target: '@UI.FieldGroup#BuyerPaymentHeader',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'Tranches',
+            Label : '{i18n>trancheHeader}',
+            Target: '@UI.LineItem#trancheHeader',
+        },
+    // {
+    //     $Type : 'UI.ReferenceFacet',
+    //     ID    : 'Documentary',
+    //     Label : '{i18n>documentaryHeader}',
+    //     Target: 'documentary/@UI.LineItem#documentaryHeader',
+    // },
+    ],
+
+    UI.LineItem                      : [
 
         {
             $Type                : 'UI.DataField',

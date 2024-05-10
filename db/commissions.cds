@@ -62,3 +62,9 @@ entity ContractDetails {
 entity TrancheDetails {
     key TRANCHE_NO : TrancheNo
 }
+
+entity DocumentaryRequirements {
+    key SUBMISSION_CODE : String(10) @Common.Label: 'Submission Code';
+        DESCRIPTION     : String(50) @Common.Label: 'Description';
+        STATUS          : String(15) @Common.Label: 'Status'
+}
